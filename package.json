@@ -1,0 +1,45 @@
+{
+  "name": "p9-common",
+  "version": "0.1.0",
+  "description": "Common method library",
+  "main": "dist/index.node.js",
+  "browser": "dist/index.browser.js",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config webpack/config.js",
+    "lint": "eslint ./src",
+    "test": "mocha ./test/tests/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:hierotech/P9-Common.git"
+  },
+  "author": "Hiero Technologies <uns.finance@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/hierotech/P9-Common/issues"
+  },
+  "homepage": "https://github.com/hierotech/P9-Common#README",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "@babel/runtime": "^7.8.3",
+    "@ololoepepe/babel-preset-default": "^0.1.1",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "big.js": "^5.2.2",
+    "core-js": "^3.6.4",
+    "decimal.js": "^10.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-xo": "^0.27.2",
+    "mocha": "^7.0.0",
+    "regenerator-runtime": "^0.13.3",
+    "terser-webpack-plugin": "^2.3.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "peerDependencies": {
+    "big.js": "^5.2.2",
+    "decimal.js": "^10.2.0"
+  }
+}

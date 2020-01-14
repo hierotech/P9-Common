@@ -1,0 +1,14 @@
+extends:
+  - 'xo'
+env:
+  browser: true
+  node: true
+parser: 'babel-eslint'
+rules:
+  indent:
+    - 'error'
+    - 2
+  camelcase:
+    - 2
+    - properties: 'never'
+
