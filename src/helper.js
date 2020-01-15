@@ -11,23 +11,23 @@ export function createTimestamp(precision = TIMESTAMP_PRECISION.HOUR) {
   const timestamp = new Date();
 
   if (precision >= TIMESTAMP_PRECISION.SECOND) {
-    timestamp.setMilliseconds(0);
+    timestamp.setUTCMilliseconds(0);
   }
 
   if (precision >= TIMESTAMP_PRECISION.MINUTE) {
-    timestamp.setSeconds(0);
+    timestamp.setUTCSeconds(0);
   }
 
   if (precision >= TIMESTAMP_PRECISION.HOUR) {
-    timestamp.setMinutes(0);
+    timestamp.setUTCMinutes(0);
   }
 
   if (precision >= TIMESTAMP_PRECISION.DAY) {
-    timestamp.setHours(0);
+    timestamp.setUTCHours(0);
   }
 
   if (precision >= TIMESTAMP_PRECISION.MONTH) {
-    timestamp.setDate(1);
+    timestamp.setUTCDate(1);
   }
 
   return timestamp;
