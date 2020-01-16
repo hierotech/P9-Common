@@ -133,13 +133,17 @@ export function getOneMinusStrategyCoefficient(userAssetOperations) {
   return (new Big(50.75)).minus(Decimal.log(xPow, 1.3)).div(100);
 }
 
+export function getRealizedSuccessFee(userAssetOperations) {
+  return userAssetOperations
+    .filter(({type}) => type === 'success_fee')
+    .reduce((acc, {amount}) => {
+      return acc.plus(amount);
+    }, new Big(0));
+}
+
 export function getSuccessFee(userAsset, userAssetOperations, user) {
   if (userAsset.deal_status === 'closed') {
-    return userAssetOperations
-      .filter(({type}) => type === 'success_fee')
-      .reduce((acc, {amount}) => {
-        return acc.plus(amount);
-      }, new Big(0));
+    return getRealizedSuccessFee(userAssetOperations);
   }
 
   const abp = getAverageBuyPrice(userAssetOperations);
@@ -157,13 +161,17 @@ export function getSuccessFee(userAsset, userAssetOperations, user) {
   return discount ? successFee.times((new Big(1)).minus(discount)) : successFee;
 }
 
+export function getRealizedSellFee(userAssetOperations) {
+  return userAssetOperations
+    .filter(({type}) => type === 'sell_fee')
+    .reduce((acc, {amount}) => {
+      return acc.plus(amount);
+    }, new Big(0));
+}
+
 export function getSellFee(userAsset, userAssetOperations) {
   if ((userAsset.deal_type === 'ETF') || (userAsset.deal_status === 'closed')) {
-    return userAssetOperations
-      .filter(({type}) => type === 'sell_fee')
-      .reduce((acc, {amount}) => {
-        return acc.plus(amount);
-      }, new Big(0));
+    return getRealizedSellFee(userAssetOperations);
   }
 
   return getGrossValue(userAsset, userAssetOperations).times(EXPECTED_SELL_FEE_COEFF);
@@ -178,6 +186,34 @@ export function getNetProfit(userAsset, userAssetOperations, user) {
 
   const successFee = getSuccessFee(userAsset, userAssetOperations, user);
   const sellFee = getSellFee(userAsset, userAssetOperations);
+
+  return grossProfit.minus(successFee.plus(sellFee));
+}
+
+export function getRealizedNetProfit(userAssetOperations, userAssetOperationsSell, startOfPeriod = null) {
+  const sellSum = userAssetOperationsSell
+    .reduce((acc, {quantity, price}) => {
+      return acc.plus((new Big(price)).times(quantity));
+    }, new Big(0));
+
+  const quantity = userAssetOperationsSell.reduce((acc, {quantity}) => {
+    return acc.plus(quantity);
+  }, new Big(0));
+
+  const ts = new Date(Math.max(...userAssetOperationsSell.map(({timestamp}) => timestamp)));
+
+  const grossProfit = sellSum.minus(getClosedUsedBuyingPower(userAssetOperations, quantity, ts));
+
+  const tss = startOfPeriod && new Date(startOfPeriod);
+
+  const operations = tss ? userAssetOperations.filter(uo => {
+    const ots = new Date(uo.timestamp);
+
+    return (ots >= tss) && (ots < ts);
+  }) : userAssetOperations;
+
+  const successFee = getRealizedSuccessFee(operations);
+  const sellFee = getRealizedSellFee(operations);
 
   return grossProfit.minus(successFee.plus(sellFee));
 }
