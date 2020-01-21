@@ -190,7 +190,12 @@ export function getNetProfit(userAsset, userAssetOperations, user) {
   return grossProfit.minus(successFee.plus(sellFee));
 }
 
-export function getRealizedNetProfit(userAssetOperations, userAssetOperationsSell, startOfPeriod = null) {
+export function getRealizedNetProfit(
+  userAssetOperations,
+  userAssetOperationsSell,
+  startOfPeriod = null,
+  endOfPeriod = null
+) {
   const sellSum = userAssetOperationsSell
     .reduce((acc, {quantity, price}) => {
       return acc.plus((new Big(price)).times(quantity));
@@ -205,11 +210,12 @@ export function getRealizedNetProfit(userAssetOperations, userAssetOperationsSel
   const grossProfit = sellSum.minus(getClosedUsedBuyingPower(userAssetOperations, quantity, ts));
 
   const tss = startOfPeriod && new Date(startOfPeriod);
+  const tse = endOfPeriod && new Date(endOfPeriod);
 
-  const operations = tss ? userAssetOperations.filter(uo => {
+  const operations = (tss && tse) ? userAssetOperations.filter(uo => {
     const ots = new Date(uo.timestamp);
 
-    return (ots >= tss) && (ots < ts);
+    return (ots >= tss) && (ots < tse);
   }) : userAssetOperations;
 
   const successFee = getRealizedSuccessFee(operations);
