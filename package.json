@@ -24,7 +24,7 @@
     "@babel/core": "^7.8.3",
     "@babel/register": "^7.8.3",
     "@babel/runtime": "^7.8.3",
-    "@ololoepepe/babel-preset-default": "^0.1.1",
+    "@ololoepepe/babel-preset-default": "^0.1.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "big.js": "^5.2.2",
