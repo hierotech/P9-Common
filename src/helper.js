@@ -32,3 +32,17 @@ export function createTimestamp(precision = TIMESTAMP_PRECISION.HOUR) {
 
   return timestamp;
 }
+
+export function delay(msecs) {
+  return new Promise(resolve => setTimeout(resolve, msecs));
+}
+
+export function hasOwnProperty(obj, propName) {
+  return Object.prototype.hasOwnProperty.call(obj, propName);
+}
+
+export function toChunks(array, chunkSize) {
+  return [].concat.apply([], array.map((elem, i) => {
+    return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
+  }));
+}
