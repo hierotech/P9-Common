@@ -41,6 +41,18 @@ export function hasOwnProperty(obj, propName) {
   return Object.prototype.hasOwnProperty.call(obj, propName);
 }
 
+export function stringifyQuery(query) {
+  return Object.keys(query).map(key => {
+    const value = query[key];
+
+    if (!Array.isArray(value)) {
+      return `${key}=${encodeURIComponent(value)}`;
+    }
+
+    return value.map(v => `${key}=${encodeURIComponent(v)}`).join('&');
+  }).join('&');
+}
+
 export function toChunks(array, chunkSize) {
   return [].concat.apply([], array.map((elem, i) => {
     return i % chunkSize ? [] : [array.slice(i, i + chunkSize)];
