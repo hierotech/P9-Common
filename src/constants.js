@@ -3,4 +3,6 @@ export const PORTFOLIO_PERFORMANCE_INTERVALS = ['1h', '1d', '1w'];
 
 export const DEAL_TYPES = ['IPO', 'PRE_IPO', 'STARTUP', 'ETF'];
 
+export const IDENTITY_CARD_TYPES = ['passport'];
+
 export const EXPECTED_SELL_FEE_COEFF = 0.005;
