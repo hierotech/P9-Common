@@ -7,6 +7,12 @@ export const TIMESTAMP_PRECISION = {
   MONTH: 5
 };
 
+const AGREEMENT_AGENT_SIGNED_OR_REQUESTED_STATUSES = ['agreement_agent_requested', 'agreement_agent_signed'];
+const AGREEMENT_SIGNED_STATUSES = ['agreement_signed', ...AGREEMENT_AGENT_SIGNED_OR_REQUESTED_STATUSES];
+const AGREEMENT_SIGNED_OR_REQUESTED_STATUSES = ['agreement_requested', ...AGREEMENT_SIGNED_STATUSES];
+const VERIFIED_STATUSES = ['verified', ...AGREEMENT_SIGNED_OR_REQUESTED_STATUSES];
+const VERIFIED_OR_REQUESTED_STATUSES = ['verification_requested', ...VERIFIED_STATUSES];
+
 export function createTimestamp(precision = TIMESTAMP_PRECISION.HOUR) {
   const timestamp = new Date();
 
@@ -39,6 +45,26 @@ export function delay(msecs) {
 
 export function hasOwnProperty(obj, propName) {
   return Object.prototype.hasOwnProperty.call(obj, propName);
+}
+
+export function isAgreementAgentSignedOrRequestedStatus(legalStatus) {
+  return AGREEMENT_AGENT_SIGNED_OR_REQUESTED_STATUSES.includes(legalStatus);
+}
+
+export function isAgreementSignedStatus(legalStatus) {
+  return AGREEMENT_SIGNED_STATUSES.includes(legalStatus);
+}
+
+export function isAgreementSignedOrRequestedStatus(legalStatus) {
+  return AGREEMENT_SIGNED_OR_REQUESTED_STATUSES.includes(legalStatus);
+}
+
+export function isVerifiedStatus(legalStatus) {
+  return VERIFIED_STATUSES.includes(legalStatus);
+}
+
+export function isVerifiedOrRequestedStatus(legalStatus) {
+  return VERIFIED_OR_REQUESTED_STATUSES.includes(legalStatus);
 }
 
 export function stringifyQuery(query) {
