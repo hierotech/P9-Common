@@ -10,8 +10,7 @@ const CONFIG_BASE = {
   },
   externals: [
     'big.js',
-    'decimal.js',
-    '@ololoepepe/redux-tools'
+    'decimal.js'
   ],
   module: {
     rules: [{
