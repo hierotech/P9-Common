@@ -35,6 +35,10 @@ export function cryptoAtomsToUnit(atoms, currency) {
   return (new Big(atoms)).div(CRYPTO_UNIT_ATOM_COUNT[currency]);
 }
 
+export function unitToCryptoAtoms(unit, currency) {
+  return Number((new Big(unit)).times(CRYPTO_UNIT_ATOM_COUNT[currency]).toFixed(0));
+}
+
 export function formatCurrency(quantity, currency, {withSign = false, withSeparators = withSign} = {}) {
   const decimalDigits = DECIMAL_DIGIT_COUNT[currency];
 
