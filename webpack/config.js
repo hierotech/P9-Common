@@ -9,6 +9,7 @@ const CONFIG_BASE = {
     libraryTarget: 'umd'
   },
   externals: [
+    'axios',
     'big.js',
     'decimal.js'
   ],
