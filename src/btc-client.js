@@ -56,9 +56,11 @@ export function createClient({isTestnet, rpm}) {
   const request = async (path, query) => {
     try {
       await requestPromise;
-    } finally {
-      requestPromise = _doRequest(path, query);
+    } catch {
+      // This is to prevent mistakenly raising unhandled exception, as it must be handled in the caller scope
     }
+
+    requestPromise = _doRequest(path, query);
 
     return requestPromise;
   };
