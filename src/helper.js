@@ -13,6 +13,22 @@ const AGREEMENT_SIGNED_OR_REQUESTED_STATUSES = ['agreement_requested', ...AGREEM
 const VERIFIED_STATUSES = ['verified', ...AGREEMENT_SIGNED_OR_REQUESTED_STATUSES];
 const VERIFIED_OR_REQUESTED_STATUSES = ['verification_requested', ...VERIFIED_STATUSES];
 
+export function createAddressString(address) {
+  const {
+    line_1: line1,
+    line_2: line2,
+    apartment,
+    town,
+    area,
+    zip,
+    country
+  } = address;
+
+  return [line1, line2, apartment, town, area, zip, country]
+    .filter(part => Boolean(part))
+    .join(', ');
+}
+
 export function createTimestamp(precision = TIMESTAMP_PRECISION.HOUR) {
   const timestamp = new Date();
 
