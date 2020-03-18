@@ -63,6 +63,14 @@ export function hasOwnProperty(obj, propName) {
   return Object.prototype.hasOwnProperty.call(obj, propName);
 }
 
+export function exposeFields(obj, ...fields) {
+  return fields.filter(propName => hasOwnProperty(obj, propName)).reduce((acc, propName) => {
+    acc[propName] = obj[propName];
+
+    return acc;
+  }, {});
+}
+
 export function isAgreementAgentSignedOrRequestedStatus(legalStatus) {
   return AGREEMENT_AGENT_SIGNED_OR_REQUESTED_STATUSES.includes(legalStatus);
 }
