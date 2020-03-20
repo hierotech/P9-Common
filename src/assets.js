@@ -156,7 +156,9 @@ export function getSuccessFee(userAsset, userAssetOperations, user) {
 
   const discount = user && getSuccessFeeDiscount(user);
 
-  const successFee = current.plus(historical).times(getOneMinusStrategyCoefficient(userAssetOperations));
+  const pre = current.plus(historical);
+
+  const successFee = pre.gt(0) ? pre.times(getOneMinusStrategyCoefficient(userAssetOperations)) : new Big(0);
 
   return discount ? successFee.times((new Big(1)).minus(discount)) : successFee;
 }
