@@ -63,6 +63,16 @@ export function hasOwnProperty(obj, propName) {
   return Object.prototype.hasOwnProperty.call(obj, propName);
 }
 
+export function excludeFields(obj, ...fields) {
+  return Object.keys(obj)
+    .filter(key => !fields.includes(key))
+    .reduce((acc, key) => {
+      acc[key] = obj[key];
+
+      return acc;
+    }, {});
+}
+
 export function exposeFields(obj, ...fields) {
   return fields.filter(propName => hasOwnProperty(obj, propName)).reduce((acc, propName) => {
     acc[propName] = obj[propName];

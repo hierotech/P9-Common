@@ -1,4 +1,5 @@
 import {formatCurrency} from '../currency';
+import {excludeFields} from '../helper';
 
 let pg = null;
 
@@ -31,10 +32,11 @@ export async function createUserOperationAsset(options) {
     })
     .returning('*');
 
-  return {
+  return excludeFields({
     ...operation,
-    ...operationAsset
-  };
+    ...operationAsset,
+    currency: wallet.currency
+  }, 'internal_id');
 }
 
 export async function createUserOperationWallet(params) {
@@ -80,10 +82,11 @@ export async function createUserOperationWallet(params) {
     .insert(userOperationWalletData)
     .returning('*');
 
-  return {
+  return excludeFields({
     ...operation,
-    ...operationWallet
-  };
+    ...operationWallet,
+    currency: wallet.currency
+  }, 'internal_id');
 }
 
 export function init(postgresClient) {
