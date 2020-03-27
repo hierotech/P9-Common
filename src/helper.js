@@ -29,6 +29,14 @@ export function createAddressString(address) {
     .join(', ');
 }
 
+export function createFullName(firstName, lastName, defaultValue = '') {
+  if (!firstName && !lastName) {
+    return defaultValue;
+  }
+
+  return `${firstName || ''}${(firstName && lastName) ? ' ' : ''}${lastName || ''}`;
+}
+
 export function createTimestamp(precision = TIMESTAMP_PRECISION.HOUR) {
   const timestamp = new Date();
 
@@ -55,8 +63,35 @@ export function createTimestamp(precision = TIMESTAMP_PRECISION.HOUR) {
   return timestamp;
 }
 
-export function delay(msecs) {
-  return new Promise(resolve => setTimeout(resolve, msecs));
+export function delay(msecs, getCancelCallback) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(resolve, msecs);
+
+    if (typeof getCancelCallback === 'function') {
+      getCancelCallback(() => {
+        clearTimeout(timer);
+
+        reject();
+      });
+    }
+  });
+}
+
+export function extractCount(items, propertyName = 'count_total') {
+  if (items.length < 1) {
+    return {
+      items: [],
+      countTotal: 0
+    };
+  }
+
+  const countTotal = Number(items[0][propertyName]);
+
+  items.forEach(item => {
+    delete item.count_total;
+  });
+
+  return {items, countTotal};
 }
 
 export function hasOwnProperty(obj, propName) {
