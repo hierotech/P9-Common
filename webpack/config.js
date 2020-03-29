@@ -2,14 +2,12 @@ const {resolve} = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const CONFIG_BASE = {
-  entry: './src/index.js',
   output: {
     path: resolve(__dirname, '..', 'dist'),
     library: 'P9Common',
     libraryTarget: 'umd'
   },
   externals: [
-    'axios',
     'big.js',
     'decimal.js'
   ],
@@ -42,16 +40,20 @@ const CONFIG_BASE = {
 
 module.exports = [{
   ...CONFIG_BASE,
+  entry: './src/index.browser.js',
   target: 'web',
   output: {
     ...CONFIG_BASE.output,
     filename: 'index.browser.js'
-  }
+  },
+  externals: [...CONFIG_BASE.externals, 'react', 'react-dom']
 }, {
   ...CONFIG_BASE,
+  entry: './src/index.node.js',
   target: 'node',
   output: {
     ...CONFIG_BASE.output,
     filename: 'index.node.js'
-  }
+  },
+  externals: [...CONFIG_BASE.externals, 'axios']
 }];

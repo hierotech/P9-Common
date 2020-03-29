@@ -26,6 +26,8 @@ export const USER_ID_SELF = 'self';
 export const IMAGE_MIME_TYPES = ['image/png', 'image/jpeg'];
 
 export const EXPECTED_SELL_FEE_COEFF = 0.005;
+export const SUCCESS_FEE_DISCOUNT_PROMO = 0.5;
+export const SUCCESS_FEE_DISCOUNT_PROMO_PERIOD = 180 * 24 * 60 * 60 * 1000;
 
 export const RX_BTC_ADDRESS = /^\w{34}$/;
 export const RX_DATE =

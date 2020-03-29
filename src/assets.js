@@ -1,10 +1,7 @@
 import Big from 'big.js';
 import Decimal from 'decimal.js';
 
-import {EXPECTED_SELL_FEE_COEFF} from './constants';
-
-const SUCCESS_FEE_DISCOUNT_PROMO = 0.5;
-const SUCCESS_FEE_DISCOUNT_PROMO_PERIOD = 180 * 24 * 60 * 60 * 1000;
+import {EXPECTED_SELL_FEE_COEFF, SUCCESS_FEE_DISCOUNT_PROMO, SUCCESS_FEE_DISCOUNT_PROMO_PERIOD} from './constants';
 
 export function getSuccessFeeDiscount(user) {
   const userDiscount = user.success_fee_discount;
