@@ -1,6 +1,6 @@
 export const CANDLESTICK_INTERVALS = ['1m', '5m', '15m', '1h', '4h', '1d'];
 
-export const DATA_PROVIDERS = ['binance', 'coinmarketcap', 'cryptocompare', 'iex'];
+export const DATA_PROVIDERS = ['binance', 'bitmex', 'coinmarketcap', 'cryptocompare', 'deribit', 'iex'];
 
 export const DEAL_TYPES = ['IPO', 'PRE_IPO', 'STARTUP', 'ETF'];
 export const DEMAND_TYPES = ['COLD', 'WARM', 'HOT'];
