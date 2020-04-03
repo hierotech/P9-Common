@@ -21,6 +21,20 @@ window.addEventListener('resize', () => {
   });
 });
 
+export const useCurrentDate = (updateInterval = 1000) => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDate(new Date());
+    }, updateInterval);
+
+    return () => clearInterval(timer);
+  }, [updateInterval]);
+
+  return currentDate;
+};
+
 export const useElementSize = (elementRef, defaultSize = {width: 0, height: 0}) => {
   const [size, setSize] = useState(defaultSize);
 
