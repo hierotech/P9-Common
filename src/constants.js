@@ -29,7 +29,7 @@ export const EXPECTED_SELL_FEE_COEFF = 0.005;
 export const SUCCESS_FEE_DISCOUNT_PROMO = 0.5;
 export const SUCCESS_FEE_DISCOUNT_PROMO_PERIOD = 180 * 24 * 60 * 60 * 1000;
 
-export const RX_BTC_ADDRESS = /^\w{34}$/;
+export const RX_BTC_ADDRESS = /^\w{14,74}$/;
 export const RX_DATE =
   /^20(1[6-9]|[2-9][0-9])-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])T[0-5][0-9]:[0-5][0-9]:[0-5][0-9].[0-9]{3}Z$/;
 export const RX_DATE_ANY =
