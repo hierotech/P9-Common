@@ -29,6 +29,7 @@ export const EXPECTED_SELL_FEE_COEFF = 0.005;
 export const SUCCESS_FEE_DISCOUNT_PROMO = 0.5;
 export const SUCCESS_FEE_DISCOUNT_PROMO_PERIOD = 180 * 24 * 60 * 60 * 1000;
 
+export const DEPOSIT_FEE_USD = 10;
 export const WITHDRAW_FEE_USD_BASE = 20;
 export const WITHDRAW_FEE_USD_COEFF = 0.0015;
 export const WITHDRAW_FEE_USD_MAX = 100;
