@@ -1,20 +1,22 @@
 import amqplib from 'amqplib';
 import merge from 'lodash.merge';
 
-export const DEFAULT_CONFIG = {
-  exchange: {
-    consume: {
-      type: 'fanout'
-    },
-    publish: {
-      type: 'fanout'
-    }
-  },
-  reconnectionDelay: 10 * 1000,
-  sendToConsumeChannel: false
-};
-
 export default class AmqpClient {
+  static get DEFAULT_CONFIG() {
+    return {
+      exchange: {
+        consume: {
+          type: 'fanout'
+        },
+        publish: {
+          type: 'fanout'
+        }
+      },
+      reconnectionDelay: 10 * 1000,
+      sendToConsumeChannel: false
+    };
+  }
+
   /**
    * Creates and instance of AmqpClient.
    *
@@ -35,7 +37,7 @@ export default class AmqpClient {
    * @returns {Promise<void>}
    */
   constructor(config) {
-    this._config = merge({}, DEFAULT_CONFIG, config);
+    this._config = merge({}, AmqpClient.DEFAULT_CONFIG, config);
     this._temporaryQueue = [];
     this._consumeChannel = null;
     this._publishChannel = null;

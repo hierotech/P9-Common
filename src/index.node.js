@@ -1,4 +1,4 @@
-import * as AmqpClient from './amqp-client';
+import AmqpClient from './amqp-client';
 import * as Assets from './assets';
 import * as BtcClient from './btc-client';
 import * as Constants from './constants';
