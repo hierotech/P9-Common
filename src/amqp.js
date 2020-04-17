@@ -168,22 +168,22 @@ export function subscribe(callback) {
   subscriptionCallback = callback;
 }
 
-export async function broadcast(data) {
+export async function broadcast(data, toPublishChannel = false) {
   await publish({
     data: {
       type: 'broadcast',
       data: {data}
     },
     type: 'notification'
-  }, true);
+  }, !toPublishChannel);
 }
 
-export async function send(receiverId, data) {
+export async function send(receiverId, data, toPublishChannel = false) {
   await publish({
     data: {
       type: 'send',
       data: {receiverId, data}
     },
     type: 'notification'
-  }, true);
+  }, !toPublishChannel);
 }
