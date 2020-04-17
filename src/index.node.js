@@ -1,4 +1,4 @@
-import * as Amqp from './amqp';
+import * as AmqpClient from './amqp-client';
 import * as Assets from './assets';
 import * as BtcClient from './btc-client';
 import * as Constants from './constants';
@@ -7,4 +7,4 @@ import * as Funds from './funds';
 import * as Helper from './helper';
 import * as Storage from './storage';
 
-export {Amqp, Assets, BtcClient, Constants, Currency, Funds, Helper, Storage};
+export {AmqpClient, Assets, BtcClient, Constants, Currency, Funds, Helper, Storage};
