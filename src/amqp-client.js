@@ -45,8 +45,18 @@ export default class AmqpClient {
     this._handlers = new Map();
   }
 
-  async init() {
-    await this._init();
+  async init({throwOnError = false} = {}) {
+    try {
+      await this._init();
+    } catch (err) {
+      if (throwOnError) {
+        throw err;
+      }
+
+      console.error('[AmqpClient.init]', err);
+
+      this._handleClose();
+    }
   }
 
   installHandler(type, handler) {
