@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-import {Helper} from '../../src/index.node.js';
+import {Helper} from '../src/index.node.js';
 
 describe('Helper', () => {
   describe('isAgreementAgentSignedOrRequestedStatus', () => {

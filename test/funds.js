@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-import {Funds} from '../../src/index.node.js';
+import {Funds} from '../src/index.node.js';
 
 describe('Funds', () => {
   describe('getWithdrawFeeUsd', () => {
