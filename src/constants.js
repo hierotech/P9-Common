@@ -19,7 +19,7 @@ export const UPLOAD_TYPES = [
   'asset_logo',
   'asset_placeholder'
 ];
-export const FILE_TYPES = [...UPLOAD_TYPES, 'user_agreement_signed', 'user_agreement_agent_signed'];
+export const FILE_TYPES = [...UPLOAD_TYPES, 'user_agreement_signed', 'user_agreement_agent_signed', 'user_invoice_pdf'];
 
 export const USER_LOCK_REASONS = ['password_change'];
 
