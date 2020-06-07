@@ -4,22 +4,19 @@ const CURRENCIES_FIAT = new Set(['USD']);
 
 const DECIMAL_DIGIT_COUNT = {
   USD: 2,
-  BTC: 8,
-  ETH: 8
+  BTC: 8
 };
 
 const CURRENCY_SIGNS = {
   USD: '$',
-  BTC: '₿',
-  ETH: 'Ξ'
+  BTC: '₿'
 };
 
 const CRYPTO_UNIT_ATOM_COUNT = {
-  BTC: new Big('100000000'),
-  ETH: new Big('1000000000000000000')
+  BTC: new Big('100000000')
 };
 
-export const CURRENCY_TYPES = ['USD', 'BTC', 'ETH'];
+export const CURRENCY_TYPES = ['USD', 'BTC'];
 
 function _withCurrencySign(numberString, currency) {
   return CURRENCY_SIGNS[currency] + ' ' + numberString;
