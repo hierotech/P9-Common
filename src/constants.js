@@ -45,4 +45,5 @@ export const RX_DATE_ANY =
 export const RX_EMAIL = /^[^@]+@[^@]+$/;
 export const RX_NUMERIC = /^[0-9]+(\.[0-9]+)?$/;
 export const RX_NUMERIC_NON_NEGATIVE = /^[0-9]+(\.[0-9]+)?$/;
+export const RX_NUMERIC_POSITIVE = /^([0-9]+\.0*[1-9][0-9]*|0*[1-9][0-9]*(\.[0-9]+)?)$/;
 export const RX_UUID = /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/i;
