@@ -2,24 +2,24 @@ import Big from 'big.js';
 
 const CURRENCIES_FIAT = new Set(['USD']);
 
-const DECIMAL_DIGIT_COUNT = {
+export const DECIMAL_DIGIT_COUNT = {
   USD: 2,
   BTC: 8
 };
 
-const CURRENCY_SIGNS = {
+export const CURRENCY_SIGN = {
   USD: '$',
   BTC: '₿'
 };
 
-const CRYPTO_UNIT_ATOM_COUNT = {
+export const CRYPTO_UNIT_ATOM_COUNT = {
   BTC: new Big('100000000')
 };
 
 export const CURRENCY_TYPES = ['USD', 'BTC'];
 
 function _withCurrencySign(numberString, currency) {
-  return CURRENCY_SIGNS[currency] + ' ' + numberString;
+  return CURRENCY_SIGN[currency] + ' ' + numberString;
 }
 
 function _withThousandsSeparators(numberString) {
