@@ -19,7 +19,9 @@ function _createGcsUrl(entityType, entityId, type, fileName) {
 }
 
 export function createAssetLogoUrl(asset) {
-  return _createGcsUrl('assets', asset.ticker, 'logo', asset.file_name_logo);
+  const file = asset.files.find(({type}) => type === 'asset_logo');
+
+  return _createGcsUrl('assets', asset.ticker, 'logo', file.name);
 }
 
 export function createAssetPlaceholderUrl(asset) {
@@ -27,13 +29,13 @@ export function createAssetPlaceholderUrl(asset) {
     throw new Error('defaultAssetPlaceholder is not initialized');
   }
 
-  const fileName = asset.file_name_placeholder;
+  const file = asset.files.find(({type}) => type === 'asset_placeholder');
 
-  if (!fileName) {
+  if (!file) {
     return defaultAssetPlaceholder;
   }
 
-  return _createGcsUrl('assets', asset.ticker, 'placeholder', asset.file_name_placeholder);
+  return _createGcsUrl('assets', asset.ticker, 'placeholder', file.name);
 }
 
 export function createUserAvatarUrl(personalData) {
@@ -41,13 +43,13 @@ export function createUserAvatarUrl(personalData) {
     throw new Error('defaultAvatar is not initialized');
   }
 
-  const fileName = personalData.file_name_avatar;
+  const file = personalData.files.find(({type}) => type === 'user_avatar');
 
-  if (!fileName) {
+  if (!file) {
     return defaultAvatar;
   }
 
-  return _createGcsUrl('users', personalData.user_id, 'avatar', fileName);
+  return _createGcsUrl('users', personalData.user_id, 'avatar', file.name);
 }
 
 export function createWindow(url, open = false) {
