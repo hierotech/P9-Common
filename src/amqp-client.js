@@ -43,6 +43,8 @@ export default class AmqpClient {
     this._publishChannel = null;
     this._isHandlingClose = false;
     this._handlers = new Map();
+    this._isClosing = false;
+    this._connection = null;
   }
 
   async init({throwOnError = false} = {}) {
@@ -56,6 +58,24 @@ export default class AmqpClient {
       console.error('[AmqpClient.init]', err);
 
       this._handleClose();
+    }
+  }
+
+  async close() {
+    if (this._isClosing) {
+      return;
+    }
+
+    if (!this._connection) {
+      return;
+    }
+
+    this._isClosing = true;
+
+    try {
+      await this._connection.close();
+    } finally {
+      this._isClosing = false;
     }
   }
 
@@ -157,6 +177,8 @@ export default class AmqpClient {
     this._consumeChannel = await this._initConsume(connection);
     this._publishChannel = await this._initPublish(connection);
 
+    this._connection = connection;
+
     connection.on('close', this._handleClose);
     connection.on('error', err => console.error('[AmqpClient._init::connection.on(\'error\')]', err));
 
@@ -175,6 +197,12 @@ export default class AmqpClient {
   }
 
   _handleClose = () => {
+    this._connection = null;
+
+    if (this._isClosing) {
+      return;
+    }
+
     if (this._isHandlingClose) {
       return;
     }
