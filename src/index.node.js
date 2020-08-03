@@ -6,5 +6,6 @@ import * as Currency from './currency';
 import * as Funds from './funds';
 import * as Helper from './helper';
 import * as Storage from './storage';
+import TerminationHandler from './termination-handler';
 
-export {AmqpClient, Assets, BtcClient, Constants, Currency, Funds, Helper, Storage};
+export {AmqpClient, Assets, BtcClient, Constants, Currency, Funds, Helper, Storage, TerminationHandler};

@@ -8,8 +8,14 @@ const CONFIG_BASE = {
     libraryTarget: 'umd'
   },
   externals: [
+    'amqplib',
+    'axios',
     'big.js',
-    'decimal.js'
+    'decimal.js',
+    'http-terminator',
+    'lodash.merge',
+    'react',
+    'react-dom'
   ],
   module: {
     rules: [{

@@ -34,6 +34,7 @@
     "decimal.js": "^10.2.0",
     "eslint": "^7.5.0",
     "eslint-config-xo": "^0.32.1",
+    "http-terminator": "^2.0.3",
     "lodash.merge": "^4.6.2",
     "mocha": "^8.0.1",
     "react": "^16.13.1",
@@ -48,6 +49,7 @@
     "axios": "^0.19.2",
     "big.js": "^5.2.2",
     "decimal.js": "^10.2.0",
+    "http-terminator": "^2.0.3",
     "lodash.merge": "^4.6.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
