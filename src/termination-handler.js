@@ -16,6 +16,7 @@ class TerminationHandler {
     this._gracefulTerminationTimeout = gracefulTerminationTimeout;
     this._amqpInstances = new Set();
     this._firebaseAdminAppInstances = new Set();
+    this._firestoreInstances = new Set();
     this._httpServerInstances = new Map();
     this._knexInstances = new Set();
     this._redisInstances = new Set();
@@ -32,6 +33,10 @@ class TerminationHandler {
 
   attachFirebaseAdminAppInstance(instance) {
     this._firebaseAdminAppInstances.add(instance);
+  }
+
+  attachFirestoreInstance(instance) {
+    this._firestoreInstances.add(instance);
   }
 
   attachHttpServer(server) {
@@ -64,6 +69,7 @@ class TerminationHandler {
       return Promise.all([
         this._terminateAmqpInstances(),
         this._terminateFirebaseAdminAppInstances(),
+        this._terminateFirestoreInstances(),
         this._terminateKnexInstances(),
         this._terminateRedisInstances()
       ]);
@@ -82,6 +88,10 @@ class TerminationHandler {
 
   async _terminateFirebaseAdminAppInstances() {
     return Promise.allSettled(Array.from(this._firebaseAdminAppInstances).map(instance => instance.delete()));
+  }
+
+  async _terminateFirestoreInstances() {
+    return Promise.allSettled(Array.from(this._firestoreInstances).map(instance => instance.terminate()));
   }
 
   async _terminateHttpServerInstances() {
