@@ -1,5 +1,3 @@
-import {createHttpTerminator} from 'http-terminator';
-
 async function _terminateWsServer(wss) {
   return new Promise(resolve => {
     wss.close(resolve);
@@ -37,6 +35,9 @@ class TerminationHandler {
   }
 
   attachHttpServer(server) {
+    // This way it is not required as a dependency if the method is not used
+    const {createHttpTerminator} = require('http-terminator');
+
     this._httpServerInstances.set(server, createHttpTerminator({
       server,
       gracefulTerminationTimeout: this._gracefulTerminationTimeout
