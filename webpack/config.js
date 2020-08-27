@@ -36,8 +36,7 @@ const CONFIG_BASE = {
           ie8: true,
           ecma: 5,
           warnings: true
-        },
-        warningsFilter: (warning, src) => src && !src.includes('/node_modules/')
+        }
       })
     ]
   },
