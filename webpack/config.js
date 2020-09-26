@@ -9,13 +9,10 @@ const CONFIG_BASE = {
   },
   externals: [
     'amqplib',
-    'axios',
     'big.js',
     'decimal.js',
     'http-terminator',
-    'lodash.merge',
-    'react',
-    'react-dom'
+    'lodash.merge'
   ],
   module: {
     rules: [{
