@@ -1,7 +1,10 @@
 const {resolve} = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const CONFIG_BASE = {
+  mode: isProduction ? 'production' : 'development',
   output: {
     path: resolve(__dirname, '..', 'dist'),
     library: 'P9Common',
@@ -28,7 +31,6 @@ const CONFIG_BASE = {
       new TerserPlugin({
         test: /\.js?$/,
         parallel: true,
-        sourceMap: true,
         terserOptions: {
           ie8: true,
           ecma: 5,
