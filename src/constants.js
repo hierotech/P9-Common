@@ -26,6 +26,12 @@ export const USER_LOCK_REASONS = ['password_change'];
 export const USER_ID_SELF = 'self';
 
 export const IMAGE_MIME_TYPES = ['image/png', 'image/jpeg'];
+export const USER_DOCUMENT_MIME_TYPES = [
+  ...IMAGE_MIME_TYPES,
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+];
 
 export const EXPECTED_SELL_FEE_COEFF = 0.005;
 export const SUCCESS_FEE_DISCOUNT_PROMO = 0.5;

@@ -11,7 +11,6 @@ describe('Helper', () => {
 
     it('should return false on other statuses', () => {
       assert.strictEqual(Helper.isAgreementAgentSignedOrRequestedStatus('new'), false);
-      assert.strictEqual(Helper.isAgreementAgentSignedOrRequestedStatus('info_provided'), false);
       assert.strictEqual(Helper.isAgreementAgentSignedOrRequestedStatus('verification_requested'), false);
       assert.strictEqual(Helper.isAgreementAgentSignedOrRequestedStatus('verified'), false);
       assert.strictEqual(Helper.isAgreementAgentSignedOrRequestedStatus('agreement_requested'), false);
@@ -28,7 +27,6 @@ describe('Helper', () => {
 
     it('should return false on other statuses', () => {
       assert.strictEqual(Helper.isAgreementSignedStatus('new'), false);
-      assert.strictEqual(Helper.isAgreementSignedStatus('info_provided'), false);
       assert.strictEqual(Helper.isAgreementSignedStatus('verification_requested'), false);
       assert.strictEqual(Helper.isAgreementSignedStatus('verified'), false);
       assert.strictEqual(Helper.isAgreementSignedStatus('agreement_requested'), false);
@@ -45,7 +43,6 @@ describe('Helper', () => {
 
     it('should return false on other statuses', () => {
       assert.strictEqual(Helper.isAgreementSignedOrRequestedStatus('new'), false);
-      assert.strictEqual(Helper.isAgreementSignedOrRequestedStatus('info_provided'), false);
       assert.strictEqual(Helper.isAgreementSignedOrRequestedStatus('verification_requested'), false);
       assert.strictEqual(Helper.isAgreementSignedOrRequestedStatus('verified'), false);
     });
@@ -62,7 +59,6 @@ describe('Helper', () => {
 
     it('should return false on other statuses', () => {
       assert.strictEqual(Helper.isVerifiedStatus('new'), false);
-      assert.strictEqual(Helper.isVerifiedStatus('info_provided'), false);
       assert.strictEqual(Helper.isVerifiedStatus('verification_requested'), false);
     });
   });
@@ -79,7 +75,6 @@ describe('Helper', () => {
 
     it('should return false on other statuses', () => {
       assert.strictEqual(Helper.isVerifiedOrRequestedStatus('new'), false);
-      assert.strictEqual(Helper.isVerifiedOrRequestedStatus('info_provided'), false);
     });
   });
 });
